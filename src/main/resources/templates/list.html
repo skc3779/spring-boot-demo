@@ -8,6 +8,16 @@
 
 <p th:text="${config.name}"></p>
 <p th:text="${config.text}"></p>
+<p th:text="${something}"></p>
+
+<form action="" method="post">
+    <input type="text" name="text" size="100" />
+    <input type="submit" />
+</form>
+<div>댓글목록</div>
+<ul th:each="item : ${items}">
+    <li th:text="${item.text}"></li>
+</ul>
 
 </body>
 </html>

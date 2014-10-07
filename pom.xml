@@ -40,6 +40,28 @@
             <artifactId>thymeleaf-layout-dialect</artifactId>
             <version>1.2.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.14.8</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- 4. h2database를 이용 JPA 구성 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-sql</artifactId>
+            <version>3.5.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

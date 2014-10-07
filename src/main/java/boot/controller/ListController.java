@@ -3,6 +3,7 @@ package boot.controller;
 import boot.config.ConfigProperties;
 import boot.entity.Item;
 import boot.repository.ItemRepository;
+import boot.service.ItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,13 +28,13 @@ public class ListController {
     @Autowired
     private ConfigProperties configProperties;
     @Autowired
-    private ItemRepository itemRepository;
+    private ItemService itemService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView list()
     {
-        List<Item> items = itemRepository.findAll();
+        List<Item> items = itemService.getAll();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("config", configProperties);
         map.put("items", items);
@@ -44,7 +45,7 @@ public class ListController {
     @ResponseBody
     @Transactional
     public ModelAndView write(@ModelAttribute Item item) {
-        itemRepository.save(item);
+        //itemRepository.save(item);
         return new ModelAndView("redirect:/list");
     }
 }

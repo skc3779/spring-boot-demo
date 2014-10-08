@@ -1,10 +1,11 @@
-package boot.app;
+package boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 /**
@@ -12,11 +13,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({"boot.config",
-        "boot.entity",
-        "boot.repository",
-        "boot.service",
-        "boot.controller"})
+@ComponentScan
 public class Application {
     @Bean
     public CharacterEncodingFilter characterEncodingFilter() {

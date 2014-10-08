@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by kaha on 2014. 10. 8..
  */
-@Component("itemService")
+@Service("itemService")
 @Transactional
 public class ItemServiceImpl implements ItemService {
 
@@ -23,4 +23,10 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> getAll() {
         return itemRepository.findAll();
     }
+
+    @Override
+    public Item save(Item item) {
+        return itemRepository.save(item);
+    }
+
 }

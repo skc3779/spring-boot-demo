@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface ItemService {
     List<Item> getAll();
+    Item save(Item item);
 }

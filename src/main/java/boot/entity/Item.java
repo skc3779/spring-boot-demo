@@ -8,8 +8,8 @@ import javax.persistence.*;
  * Created by kaha on 2014. 10. 8..
  */
 @Entity
-@AllArgsConstructor
-@ToString
+//@AllArgsConstructor
+//@ToString
 @Data
 @Table(name="Item")
 public class Item {

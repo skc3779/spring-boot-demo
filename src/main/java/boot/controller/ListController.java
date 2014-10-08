@@ -27,6 +27,7 @@ public class ListController {
 
     @Autowired
     private ConfigProperties configProperties;
+
     @Autowired
     private ItemService itemService;
 
@@ -45,7 +46,7 @@ public class ListController {
     @ResponseBody
     @Transactional
     public ModelAndView write(@ModelAttribute Item item) {
-        //itemRepository.save(item);
+        itemService.save(item);
         return new ModelAndView("redirect:/list");
     }
 }

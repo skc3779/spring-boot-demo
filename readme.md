@@ -62,6 +62,7 @@ public class Application {
 #> mvn clean package
 #> java -jar target/spring-boot-demo-1.0-SNAPSHOT.jar
 #> mvn clean package && java -jar target/spring-boot-demo-1.0-SNAPSHOT.jar
+#> mvn spring-boot:run
 ```
 
 ### 간단한 @Controller를 작성

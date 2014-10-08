@@ -1,9 +1,6 @@
 package boot.entity;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +8,8 @@ import javax.persistence.*;
  * Created by kaha on 2014. 10. 8..
  */
 @Entity
+@AllArgsConstructor
+@ToString
 @Data
 @Table(name="Item")
 public class Item {

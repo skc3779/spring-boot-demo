@@ -8,6 +8,26 @@
 6. 외부 설정 적용및 Profile적용
 7. WAR로 만들어 미리 정해진 tomcat에 배포
 
+### String Boot 프로젝트
+
+링크 : https://github.com/spring-projects/spring-boot/
+
+### spring-boot-demo의 spring-boot version v1.1.7.RELEASE
+
+링크 : https://github.com/spring-projects/spring-boot/tree/v1.1.7.RELEASE
+
+Company Mac의 githubFriends 폴더에 샘플을 설치함.
+
+### Download a specific tag with Git
+
+After the clone, you can list the tags with git tag -l and then checkout a specific tag: git checkout tags/<tag_name>
+
+``` console
+
+#> git checkout tags/v1.1.7.RELEASE
+
+```
+
 ### 구동가능한 tomcat을 적용
 
 * pom.xml에 아래의 코드를 적용
@@ -38,7 +58,7 @@ public class Application {
 
 * Console 코드실행
 
-``` java
+``` console
 #> mvn clean package
 #> java -jar target/spring-boot-demo-1.0-SNAPSHOT.jar
 #> mvn clean package && java -jar target/spring-boot-demo-1.0-SNAPSHOT.jar

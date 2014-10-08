@@ -13,7 +13,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan
+@ComponentScan("**")
 public class Application {
     @Bean
     public CharacterEncodingFilter characterEncodingFilter() {

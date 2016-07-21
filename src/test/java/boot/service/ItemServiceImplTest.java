@@ -1,6 +1,6 @@
 package boot.service;
 
-import boot.Application;
+import boot.SpringBootDemoApplication;
 import boot.entity.Item;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,11 +13,13 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
 
+/**
+ * 1. 스프링 서비스를 이용한 테스트
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
+@SpringApplicationConfiguration(classes = SpringBootDemoApplication.class)
 @Transactional
 public class ItemServiceImplTest {
 

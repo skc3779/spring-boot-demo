@@ -12,9 +12,9 @@
 
 링크 : https://github.com/spring-projects/spring-boot/
 
-### spring-boot-demo의 spring-boot version v1.1.7.RELEASE
+### spring-boot-demo의 spring-boot version v1.4.0.RC1
 
-링크 : https://github.com/spring-projects/spring-boot/tree/v1.1.7.RELEASE
+링크 : https://github.com/spring-projects/spring-boot/tree/v1.4.0.RC1
 
 Company Mac의 githubFriends 폴더에 샘플을 설치함.
 
@@ -24,7 +24,7 @@ After the clone, you can list the tags with git tag -l and then checkout a speci
 
 ``` console
 
-#> git checkout tags/v1.1.7.RELEASE
+#> git checkout tags/1.4.0.RC1
 
 ```
 
@@ -98,19 +98,15 @@ spring에서 적극 지원하고 있는 thymeleaf html viewer 엔진
 ``` xml
 <!-- 3. view template인 thymeleaf 적용 -->
 <dependency>
-    <groupId>org.thymeleaf</groupId>
-    <artifactId>thymeleaf-spring4</artifactId>
-    <version>2.1.3.RELEASE</version>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
 </dependency>
-<dependency>
-    <groupId>nz.net.ultraq.thymeleaf</groupId>
-    <artifactId>thymeleaf-layout-dialect</artifactId>
-    <version>1.2.5</version>
-</dependency>
+
+<!-- 4. lombok 적용 -->
 <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
-    <version>1.14.8</version>
+    <version>1.16.8</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -237,13 +233,11 @@ public class ListController {
 }
 ```
 
-* Application Class 수정
+* Application Class 
 
 ```java
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan("**")
-public class Application {
+@SpringBootApplication
+public class SpringBootDemoApplication {
     @Bean
     public CharacterEncodingFilter characterEncodingFilter() {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
@@ -252,7 +246,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(SpringBootDemoApplication.class, args);
     }
 }
 ```
@@ -261,35 +255,64 @@ public class Application {
 만일 하위 디렉토리나 동일레벨 다른 디렉토리의 파일을 ComponentScan 해야 할 경우
 @ComponentScan(basePackages = {""}), @ComponentScan(value = {""}) 를 사용하면 된다.
 
-### logback 으로 로깅처리
+
+### 유닛 테스트 코드 생성
+
+스프링 부트 1.4 버전부터 새로 생성된, @SpringBootTest, @DataJpaTest 및 JacksonTester를 이용해 추가적인 방식으로 유닛 테스트 코드 생성
+점점 편해지는 방식을 제공하고 있네요..
+
+* ListControllerTest
+  스프링을 이용한 테스트 방식.
+
+* ListControllerTest02
+  스프링 부트 1.3의  @WebIntegrationTest를 이용한 테스트, @WebIntegrationTest은 스프링 부트 1.4에서 deprecated 될 예정임.
+
+* ListControllerTest03
+  스프링 부트 1.4.0.RC1를 이용한 테스트, @SpringBootTest을 이용한 테스트 방식
+
+* ListControllerTest04
+  스프링 부트 1.4.0.RC1를 이용한 테스트 (Mock을 이용한 테스트), @SpringBootTest을 이용과 Mock을 이용한 테스트 방식
+
+* ItemRepositoryTests
+  Repository 유닛 테스트
+
+* ItemJsonTests
+  Json 유닛 테스트
+
+
+### logback-spring 으로 로깅처리
 
 ```xml
-<configuration scan="true" scanPeriod="30 seconds">
-    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } [%t] --- %-40.40logger{39} : %m%n%wex"/>
-    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>-->
-            <pattern>${LOG_PATTERN}</pattern>
-        </encoder>
-    </appender>
-    <appender name="FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/demo.log</file>
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<include resource="org/springframework/boot/logging/logback/base.xml"/>
+<appender name="dailyConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+    </encoder>
+</appender>
+<appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>./logs/task.log</file>
+    <prudent>true</prudent>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <fileNamePattern>./logs/task.%d{yyyy-MM-dd}.log</fileNamePattern>
         <maxHistory>30</maxHistory>
-        <rollingPolicy
-                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/mokito-test.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>30</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>-->
-            <pattern>${LOG_PATTERN}</pattern>
-        </encoder>
-    </appender>
-    <root level="INFO">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="FILEOUT"/>
-    </root>
+    </rollingPolicy>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>INFO</level>
+    </filter>
+
+    <encoder>
+        <pattern>%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level --- [%thread] %logger{35} : %msg %n</pattern>
+    </encoder>
+</appender>
+
+<logger name="org.springframework.web" level="INFO"/>
+
+<root level="INFO">
+    <appender-ref ref="dailyConsoleAppender"/>
+    <appender-ref ref="dailyRollingFileAppender" />
+</root>
 </configuration>
 ```
 

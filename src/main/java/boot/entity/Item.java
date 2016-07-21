@@ -8,9 +8,10 @@ import javax.persistence.*;
  * Created by kaha on 2014. 10. 8..
  */
 @Entity
-//@AllArgsConstructor
 @ToString
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="Item")
 public class Item {
     @Id

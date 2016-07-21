@@ -1,0 +1,20 @@
+{
+  "groups": [{
+    "name": "config",
+    "type": "boot.config.ConfigProperties",
+    "sourceType": "boot.config.ConfigProperties"
+  }],
+  "properties": [
+    {
+      "name": "config.name",
+      "type": "java.lang.String",
+      "sourceType": "boot.config.ConfigProperties"
+    },
+    {
+      "name": "config.text",
+      "type": "java.lang.String",
+      "sourceType": "boot.config.ConfigProperties"
+    }
+  ],
+  "hints": []
+}

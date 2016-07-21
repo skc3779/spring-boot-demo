@@ -1,20 +1,15 @@
 package boot;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 /**
  * Created by kaha on 2014. 10. 7..
  */
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan("**")
-public class Application {
+@SpringBootApplication
+public class SpringBootDemoApplication {
     @Bean
     public CharacterEncodingFilter characterEncodingFilter() {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
@@ -23,6 +18,6 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(SpringBootDemoApplication.class, args);
     }
 }

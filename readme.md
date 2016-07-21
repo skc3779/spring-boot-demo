@@ -250,12 +250,14 @@ public class SpringBootDemoApplication {
     }
 }
 ```
-
+-- 1.1.4.RELEASE
 @ComponentScan("**") 은 자신이 사용된 폴더 밑을 기본적으로 스켄한다.
 만일 하위 디렉토리나 동일레벨 다른 디렉토리의 파일을 ComponentScan 해야 할 경우
 @ComponentScan(basePackages = {""}), @ComponentScan(value = {""}) 를 사용하면 된다.
 
-
+-- 1.3.XX 이상 버전부터는 @SpringBootApplication로 단순화됨.
+   @SpringBootApplication // Same as @Configuration @EnableAutoConfiguration @ComponentScan
+   
 ### 유닛 테스트 코드 생성
 
 스프링 부트 1.4 버전부터 새로 생성된, @SpringBootTest, @DataJpaTest 및 JacksonTester를 이용해 추가적인 방식으로 유닛 테스트 코드 생성

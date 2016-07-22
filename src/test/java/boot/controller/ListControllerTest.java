@@ -40,4 +40,12 @@ public class ListControllerTest {
         this.mvc.perform(get("/list")).andDo(print()).andExpect(status().isOk()).andReturn();
 
     }
+
+    @Test
+    public void testApiList() throws Exception {
+
+        this.mvc.perform(get("/api/list")).andDo(print()).andExpect(status().isOk()).andReturn();
+
+    }
+
 }

@@ -1,6 +1,7 @@
 package boot.repository;
 
 import boot.entity.Item;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@Slf4j
 public class ItemRepositoryTests {
 
     @Autowired
@@ -32,5 +34,13 @@ public class ItemRepositoryTests {
         Item item = this.itemRepository.findOne(7L);
 
         assertThat(item.getText()).isEqualTo("Item 07");
+    }
+
+    @Test
+    public void testItem() {
+        Item item = new Item(1L, "데이터 01");
+
+        log.info(item.toString());
+
     }
 }

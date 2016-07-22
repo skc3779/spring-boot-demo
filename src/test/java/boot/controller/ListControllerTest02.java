@@ -70,7 +70,7 @@ public class ListControllerTest02 {
     }
 
     @Test
-    public void testList2() throws Exception {
+    public void testNew() throws Exception {
 
         URI uri = URI.create(baseUrl+ "/api/new");
 
@@ -82,6 +82,6 @@ public class ListControllerTest02 {
 
         ResponseEntity<Item> responseItem = restTemplate.exchange(uri, HttpMethod.POST, entity, Item.class);
 
-        assertThat(responseItem.getBody().getText(), is(equalTo("데이터 07")));
+        assertThat(responseItem.getBody().getText(), is(equalTo(newItem.getText())));
     }
 }

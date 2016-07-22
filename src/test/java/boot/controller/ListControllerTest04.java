@@ -55,7 +55,7 @@ public class ListControllerTest04 {
         // 가짜 데이터 조회
         Item responseItem = restTemplate.getForObject("/api/item/"+id, Item.class);
 
-        assertThat(responseItem.getId(), is(equalTo(id)));
+        assertThat(responseItem.getText(), is(equalTo(this.mockItemService.findById(id).getText())));
     }
 
 }

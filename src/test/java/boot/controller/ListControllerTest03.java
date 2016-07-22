@@ -58,7 +58,7 @@ public class ListControllerTest03 {
     }
 
     @Test
-    public void testList2() throws Exception {
+    public void testNew() throws Exception {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -68,6 +68,6 @@ public class ListControllerTest03 {
 
         ResponseEntity<Item> responseItem = restTemplate.exchange("/api/new", HttpMethod.POST, entity, Item.class);
 
-        assertThat(responseItem.getBody().getText(), is(equalTo("데이터 07")));
+        assertThat(responseItem.getBody().getText(), is(equalTo(newItem.getText())));
     }
 }

@@ -31,7 +31,7 @@ public class ItemJosnTests {
     @Test
     public void serializeJson() throws Exception {
         Item item = new Item(1L, "Item 01");
-        assertThat(this.json.write(item)).isEqualToJson("/boot/other/item.json");
+        assertThat(this.json.write(item)).isEqualToJson("/boot/json/item.json");
 
         assertThat(this.json.write(item)).hasJsonPathStringValue("@.text");
 

@@ -22,9 +22,9 @@
     </encoder>
 </appender>
 
-<logger name="org.springframework.web" level="DEBUG"/>
+<logger name="org.springframework.web" level="INFO"/>
 
-<root level="DEBUG">
+<root level="INFO">
     <appender-ref ref="dailyConsoleAppender"/>
     <appender-ref ref="dailyRollingFileAppender" />
 </root>

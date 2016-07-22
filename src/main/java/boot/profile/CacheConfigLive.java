@@ -18,7 +18,7 @@ import org.springframework.core.io.ClassPathResource;
 public class CacheConfigLive {
     @Bean
     public CacheManager cacheManager() {
-        log.debug("Cache manager is ehCacheCacheManager");
+        log.info("Cache manager is ehCacheCacheManager");
         return new EhCacheCacheManager(ehCacheCacheManager().getObject());
     }
 

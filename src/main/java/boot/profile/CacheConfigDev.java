@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Profile;
 public class CacheConfigDev {
     @Bean
     public CacheManager concurrentMapCacheManager() {
-        log.debug("Cache manager is concurrentMapCacheManager");
-        return new ConcurrentMapCacheManager("movieFindCache");
+        log.info("Cache manager is concurrentMapCacheManager");
+        return new ConcurrentMapCacheManager("itemCache");
     }
 }
